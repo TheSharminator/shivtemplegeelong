@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shiv Temple Geelong — Divine Harmony</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-1:#3a1c0d;
+      --bg-2:#120708;
+      --gold:#ffd77a;
+      --saffron:#ff9b2f;
+      --ivory:#fff6e5;
+      --muted:#e6dcc6;
+      --charcoal:#1c0f0a;
+      --glow:rgba(255,180,60,0.15);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:var(--muted);
+      overflow-x:hidden;
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* NAVBAR */
+    nav{
+      position:fixed;top:12px;left:0;right:0;z-index:1000;
+      display:flex;justify-content:center;
+    }
+    nav .container{
+      width:100%;max-width:1200px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0.9rem 1.5rem;
+      background:rgba(10,5,0,0.45);
+      border:1px solid rgba(255,150,50,0.05);
+      border-radius:14px;
+      backdrop-filter:blur(6px);
+      box-shadow:0 4px 25px rgba(0,0,0,0.6);
+    }
+
+    .logo img{
+      height: 42px;
+      width:auto;
+      display:block;
+    }
+
+    nav ul{list-style:none;display:flex;gap:1.2rem;}
+    nav ul li a{
+      color:var(--muted);font-weight:500;font-size:0.95rem;
+      position:relative;padding-bottom:4px;text-decoration:none;
+    }
+    nav ul li a::after{
+      content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+      background:linear-gradient(90deg,var(--saffron),var(--gold));
+      transform:scaleX(0);transform-origin:left;transition:transform .3s;
+    }
+    nav ul li a:hover{color:var(--gold);}
+    nav ul li a:hover::after{transform:scaleX(1);}
+
+    /* HERO */
+    .hero{
+      position:relative;height:100vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;overflow:hidden;
+    }
+    .hero img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;z-index:1;
+      background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8)),
+                 radial-gradient(circle at 50% 40%,rgba(255,170,60,0.1),transparent 60%);
+    }
+    #hero-particles{position:absolute;inset:0;z-index:1;pointer-events:none;}
+
+    .hero-content{
+      position:relative;z-index:2;max-width:800px;padding:2rem;
+      animation:fadeIn 1.4s ease-out forwards;
+    }
+    .hero-content h1{
+      font-family:'Playfair Display',serif;
+      font-size:4rem;color:var(--saffron);
+      text-shadow:0 0 20px rgba(255,150,40,0.4),0 0 45px rgba(255,150,40,0.25);
+      margin-bottom:1rem;
+      animation:glowPulse 4s ease-in-out infinite;
+    }
+    .hero-content p{
+      color:var(--ivory);font-size:1.2rem;margin-bottom:2rem;
+    }
+    .cta{
+      display:inline-block;
+      background:linear-gradient(90deg,var(--saffron),var(--gold));
+      color:#1a0b00;font-weight:600;padding:0.9rem 2.2rem;border-radius:999px;
+      border:none;cursor:pointer;box-shadow:0 10px 40px var(--glow);
+      transition:all .25s ease;text-decoration:none;
+    }
+    .cta:hover{transform:translateY(-3px);box-shadow:0 18px 60px var(--glow);}
+
+    @keyframes glowPulse{
+      0%,100%{text-shadow:0 0 20px rgba(255,150,40,0.3),0 0 45px rgba(255,150,40,0.25);}
+      50%{text-shadow:0 0 30px rgba(255,180,70,0.6),0 0 60px rgba(255,180,70,0.4);}
+    }
+
+    /* SECTIONS */
+    section{padding:5rem 1rem;text-align:center;}
+    section .inner{max-width:1100px;margin:auto;}
+    section h2{
+      font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--gold);
+      margin-bottom:1rem;text-shadow:0 0 30px rgba(255,180,60,0.1);
+    }
+    section p.lead{max-width:850px;margin:0 auto 2rem auto;font-size:1.08rem;color:var(--muted);}
+
+    #about{background:linear-gradient(180deg,rgba(42,10,5,0.7),rgba(20,8,6,0.9));}
+    #about img{width:100%;max-width:800px;border-radius:16px;margin:1.5rem auto;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.6);}
+
+    #events{background:linear-gradient(180deg,rgba(25,5,8,0.9),rgba(15,5,3,0.95));}
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem;margin-top:2rem;}
+    .event-item{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,180,60,0.05);
+      border-radius:16px;overflow:hidden;
+      box-shadow:0 8px 40px rgba(0,0,0,0.5);
+      transition:transform .3s;
+    }
+    .event-item:hover{transform:translateY(-6px);}
+    .event-item img{width:100%;height:180px;object-fit:cover;}
+    .event-item h3{color:var(--saffron);margin-top:0.8rem;font-size:1.2rem;}
+    .event-item p{padding:0.8rem 1rem 1.2rem 1rem;color:var(--muted);}
+
+    #contact{background:linear-gradient(180deg,rgba(44,10,8,0.85),rgba(15,5,3,0.95));}
+    .contact-container{
+      display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1000px;margin:auto;
+      align-items:center;
+    }
+    .contact-container img{width:100%;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+    .contact-form{background:rgba(255,255,255,0.02);padding:2rem;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.5);}
+    .contact-form input,.contact-form textarea{
+      width:100%;padding:0.9rem;margin-bottom:1rem;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,180,60,0.1);
+      border-radius:10px;color:var(--ivory);
+    }
+    .contact-form button{
+      width:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));
+      border:none;padding:1rem;font-weight:600;border-radius:999px;cursor:pointer;
+      box-shadow:0 10px 40px var(--glow);
+    }
+    .contact-form button:hover{transform:translateY(-2px);}
+    .map-container{margin-top:2rem;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+    .map-container iframe{width:100%;height:350px;border:0;}
+
+    footer{
+      padding:3rem 1rem;background:linear-gradient(180deg,rgba(12,4,3,0.9),rgba(0,0,0,1));
+      text-align:center;color:var(--muted);
+      border-top:1px solid rgba(255,180,60,0.05);
+    }
+    .footer-line{width:100%;max-width:750px;margin:0 auto 1.5rem auto;height:8px;background:linear-gradient(90deg,transparent,var(--glow),transparent);border-radius:4px;}
+    footer h3{font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:1rem;}
+    footer .info{margin-bottom:1.5rem;}
+    footer p{font-size:0.95rem;margin:0.3rem 0;}
+    footer a{color:var(--gold);margin:0 0.4rem;text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    @media(max-width:900px){
+      .contact-container{grid-template-columns:1fr;}
+      .hero-content h1{font-size:3rem;}
+      .logo img{height:40px;}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container">
+      <a href="#hero" class="logo">
+        <img src="images_mandir/shivtemplegeelongpng-smaller.png" alt="Shiv Temple Geelong Logo">
+      </a>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="hero">
+    <img src="images_mandir/image.png" alt="Hero image of Shiv Temple">
+    <canvas id="hero-particles"></canvas>
+    <div class="hero-content">
+      <h1>ॐ नमः शिवाय</h1>
+      <p>Welcome to <strong>Shiv Temple Geelong</strong> — a sacred home of devotion, peace, and community.</p>
+      <a href="#about" class="cta">Discover More</a>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="inner">
+      <h2>About Our Temple</h2>
+      <p class="lead">Shiv Temple Geelong is devoted to Lord Shiva and the timeless teachings of Sanatan Dharma. It serves as a sacred space for prayer, meditation, seva, and celebration — nurturing spiritual connection and harmony within the community.</p>
+      <img src="https://images.unsplash.com/photo-1599586120421-0c52d5cf5bb8?auto=format&fit=crop&w=1600&q=80" alt="Temple interior">
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events">
+    <div class="inner">
+      <h2>Upcoming Events</h2>
+      <div class="events-grid">
+        <div class="event-item">
+          <img src="https://images.unsplash.com/photo-1563132330-8ac1bfa5a65d?auto=format&fit=crop&w=800&q=80" alt="Rudrabhishek">
+          <h3>Rudrabhishek Puja</h3>
+          <p>A sacred Vedic ceremony invoking Lord Shiva’s divine blessings for peace and prosperity.</p>
+        </div>
+        <div class="event-item">
+          <img src="https://images.unsplash.com/photo-1621609767857-216a62b4b6b0?auto=format&fit=crop&w=800&q=80" alt="Festival">
+          <h3>Maha Shivratri</h3>
+          <p>Celebrate the auspicious night with chanting, meditation, and prasad — joining devotees in devotion and reflection.</p>
+        </div>
+        <div class="event-item">
+          <img src="https://images.unsplash.com/photo-1602512757050-34e9f7a95ef5?auto=format&fit=crop&w=800&q=80" alt="Satsang">
+          <h3>Sunday Satsang</h3>
+          <p>Join our weekly gathering for bhajans, meditation, and soulful discussions among devotees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="inner">
+      <h2>Contact & Visit</h2>
+      <p class="lead">To learn more, volunteer, or participate in upcoming events, reach out below or visit our Temple in person.</p>
+      <div class="contact-container">
+        <img src="https://images.unsplash.com/photo-1602934311651-46f06b167c4c?auto=format&fit=crop&w=800&q=80" alt="Temple exterior">
+        <form class="contact-form" onsubmit="event.preventDefault();alert('Thank you for contacting Shiv Temple Geelong!');">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <textarea rows="4" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3142.827980511035!2d144.33694627564538!3d-38.12195597189643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad46c3b78e2582d%3A0xd8860f9798b47b64!2sShiv%20Mandir%20Geelong!5e0!3m2!1sen!2sau!4v1702879655672!5m2!1sen!2sau" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-line"></span>
+    <h3>Shiv Temple Geelong</h3>
+    <div class="info">
+      <p><strong>Address:</strong> 50 Fellmongers Rd, Breakwater VIC 3219, Australia</p>
+      <p><strong>Phone:</strong> +61 410 649 961</p>
+      <p><strong>Email:</strong> <a href="mailto:shivtemplegeelong@yahoo.com">shivtemplegeelong@yahoo.com</a></p>
+      <p><strong>Opening Hours:</strong><br>
+         Mon–Fri: 5:30 PM – 8:30 PM<br>
+         Sat–Sun: 8:00 AM – 12:30 PM & 5:30 PM – 8:30 PM
+      </p>
+    </div>
+    <p>&copy; 2025 Shiv Temple Geelong | Follow us:
+      <a href="#">Facebook</a> •
+      <a href="#">Instagram</a> •
+      <a href="#">YouTube</a></p>
+  </footer>
+
+  <script>
+    // gentle hero particles
+    const canvas=document.getElementById('hero-particles');
+    const ctx=canvas.getContext('2d');
+    let W,H,particles=[];
+    const DPR=window.devicePixelRatio||1;
+    function resize(){
+      W=canvas.width=innerWidth*DPR;
+      H=canvas.height=innerHeight*DPR;
+      ctx.scale(DPR,DPR);
+    }
+    resize();window.addEventListener('resize',resize);
+
+    class Particle{
+      constructor(){this.reset();}
+      reset(){
+        this.x=Math.random()*innerWidth;
+        this.y=Math.random()*innerHeight;
+        this.size=Math.random()*3+1;
+        this.alpha=Math.random()*0.1+0.05;
+        this.color=Math.random()<0.5?'255,180,60':'255,140,40';
+        this.vx=(Math.random()-0.5)*0.05;
+        this.vy=(Math.random()-0.5)*0.05;
+      }
+      update(){
+        this.x+=this.vx;this.y+=this.vy;
+        if(this.x<0||this.x>innerWidth||this.y<0||this.y>innerHeight)this.reset();
+      }
+      draw(){
+        const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.size*10);
+        g.addColorStop(0,`rgba(${this.color},${this.alpha})`);
+        g.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.fillStyle=g;
+        ctx.beginPath();ctx.arc(this.x,this.y,this.size*4,0,Math.PI*2);ctx.fill();
+      }
+    }
+    for(let i=0;i<25;i++)particles.push(new Particle());
+    function render(){
+      ctx.clearRect(0,0,W,H);
+      for(let p of particles){p.update();p.draw();}
+      requestAnimationFrame(render);
+    }
+    render();
+  </script>
+</body>
+</html>
